@@ -2,18 +2,25 @@ import {
     createSlice,
     createAsyncThunk
 } from '@reduxjs/toolkit'
-import api from '../../api/api'
+import { api_url } from '../../utils/index'
+import axios from 'axios'
 
 export const get_dashboard_index_data = createAsyncThunk(
     'dashboard/get_dashboard_index_data',
     async (userId, {
         rejectWithValue,
-        fulfillWithValue
+        fulfillWithValue, getState
     }) => {
         try {
+            const { token } = getState().auth
+            const config = {
+                headers: {
+                    "authorization": `Bearer ${token}`
+                }
+            }
             const {
                 data
-            } = await api.get(`/home/customer/gat-dashboard-data/${userId}`)
+            } = await axios.get(`${api_url}/home/customer/gat-dashboard-data/${userId}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error)
@@ -39,7 +46,7 @@ export const dashboardReducer = createSlice({
         }
     },
     extraReducers: {
-        [get_dashboard_index_data.fulfilled] : (state,{payload})=>{
+        [get_dashboard_index_data.fulfilled]: (state, { payload }) => {
             state.totalOrder = payload.totalOrder
             state.pendingOrder = payload.pendingOrder
             state.cancelledOrder = payload.cancelledOrder

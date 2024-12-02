@@ -2,7 +2,8 @@ import {
     createSlice,
     createAsyncThunk
 } from '@reduxjs/toolkit'
-import api from '../../api/api'
+import { api_url } from '../../utils/index'
+import axios from 'axios'
 
 export const place_order = createAsyncThunk(
     'order/place_order',
@@ -14,11 +15,17 @@ export const place_order = createAsyncThunk(
         userId,
         navigate,
         items
-    }) => {
+    }, { getState }) => {
         try {
+            const { token } = getState().auth
+            const config = {
+                headers: {
+                    "authorization": `Bearer ${token}`
+                }
+            }
             const {
                 data
-            } = await api.post('/home/order/palce-order', {
+            } = await axios.post(`${api_url}/home/order/palce-order`, {
                 price,
                 products,
                 shipping_fee,
@@ -26,7 +33,7 @@ export const place_order = createAsyncThunk(
                 userId,
                 navigate,
                 items,
-            })
+            }, config)
             navigate('/payment', {
                 state: {
                     price: price + shipping_fee,
@@ -49,12 +56,18 @@ export const get_orders = createAsyncThunk(
         status
     }, {
         rejectWithValue,
-        fulfillWithValue
+        fulfillWithValue, getState
     }) => {
         try {
+            const { token } = getState().auth
+            const config = {
+                headers: {
+                    "authorization": `Bearer ${token}`
+                }
+            }
             const {
                 data
-            } = await api.get(`/home/customer/gat-orders/${customerId}/${status}`)
+            } = await axios.get(`${api_url}/home/customer/gat-orders/${customerId}/${status}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error)
@@ -67,12 +80,18 @@ export const get_order = createAsyncThunk(
     'order/get_order',
     async (orderId, {
         rejectWithValue,
-        fulfillWithValue
+        fulfillWithValue, getState
     }) => {
         try {
+            const { token } = getState().auth
+            const config = {
+                headers: {
+                    "authorization": `Bearer ${token}`
+                }
+            }
             const {
                 data
-            } = await api.get(`/home/customer/gat-order/${orderId}`)
+            } = await axios.get(`${api_url}/home/customer/gat-order/${orderId}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error)

@@ -1,13 +1,14 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Headers from '../components/Headers'
 import Footer from '../components/Footer'
 import { FaFacebookF } from 'react-icons/fa'
-import { Link,useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineGoogle } from 'react-icons/ai'
 import FadeLoader from 'react-spinners/FadeLoader'
 import { useSelector, useDispatch } from 'react-redux'
 import { customer_login, messageClear } from '../store/reducers/authReducer'
 import toast from 'react-hot-toast'
+import { app_url } from '../utils/index'
 
 const Login = () => {
 
@@ -40,7 +41,7 @@ const Login = () => {
             toast.error(errorMessage)
             dispatch(messageClear())
         }
-        if(userInfo){
+        if (userInfo) {
             navigate('/')
         }
     }, [successMessage, errorMessage])
@@ -88,11 +89,11 @@ const Login = () => {
                                 <p>You have no account ? <Link className='text-blue-500' to='/register'>Register</Link></p>
                             </div>
                             <div className='text-center text-slate-600 pt-1'>
-                                <p> <a target='_black' className='text-blue-500' href='http://localhost:3001/register'>Register</a> seller account</p>
+                                <p> <a target='_black' className='text-blue-500' href={`${app_url}/register`}>Register</a> seller account</p>
                             </div>
                         </div>
                         <div className='w-full h-full py-4 pr-4'>
-                            <img className='w-full h-[95%]' src="http://localhost:3001/images/login.jpg" alt="" />
+                            <img className='w-full h-[95%]' src={`${app_url}/images/login.jpg`} alt="" />
                         </div>
                     </div>
                 </div>

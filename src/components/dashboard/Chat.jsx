@@ -9,7 +9,7 @@ import io from 'socket.io-client'
 import { add_friend, send_message, updateMessage, messageClear } from '../../store/reducers/chatReducer'
 import toast from 'react-hot-toast'
 
-import {api_url} from '../../utils/index'
+import { api_url, app_url } from '../../utils/index'
 
 const socket = io(api_url)
 
@@ -99,7 +99,7 @@ const Chat = () => {
                                     {
                                         activeSeller.some(c => c.sellerId === f.fdId) && <div className='w-[10px] h-[10px] rounded-full bg-green-500 absolute right-0 bottom-0'></div>
                                     }
-                                    <img src="http://localhost:3001/images/user.png" alt="" />
+                                    <img src={`${app_url}/images/user.png`} alt="" />
                                 </div>
                                 <span>{f.name}</span>
                             </Link>)
@@ -115,7 +115,7 @@ const Chat = () => {
                                         {
                                             activeSeller.some(c => c.sellerId === currentFd.fdId) && <div className='w-[10px] h-[10px] rounded-full bg-green-500 absolute right-0 bottom-0'></div>
                                         }
-                                        <img src="http://localhost:3001/images/user.png" alt="" />
+                                        <img src={`${app_url}/images/user.png`} alt="" />
                                     </div>
                                     <span>{currentFd.name}</span>
                                 </div>
@@ -130,7 +130,7 @@ const Chat = () => {
                                             if (currentFd?.fdId !== m.receverId) {
                                                 return (
                                                     <div key={i} ref={scrollRef} className='w-full flex gap-2 justify-start items-center text-[14px]'>
-                                                        <img className='w-[30px] h-[30px] ' src="http://localhost:3001/images/user.png" alt="" />
+                                                        <img className='w-[30px] h-[30px] ' src={`${app_url}/images/user.png`} alt="" />
                                                         <div className='p-2 bg-purple-500 text-white rounded-md'>
                                                             <span>{m.message}</span>
                                                         </div>
@@ -139,7 +139,7 @@ const Chat = () => {
                                             } else {
                                                 return (
                                                     <div key={i} ref={scrollRef} className='w-full flex gap-2 justify-end items-center text-[14px]'>
-                                                        <img className='w-[30px] h-[30px] ' src="http://localhost:3001/images/user.png" alt="" />
+                                                        <img className='w-[30px] h-[30px] ' src={`${app_url}/images/user.png`} alt="" />
                                                         <div className='p-2 bg-cyan-500 text-white rounded-md'>
                                                             <span>{m.message}</span>
                                                         </div>

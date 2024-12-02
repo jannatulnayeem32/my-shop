@@ -9,12 +9,9 @@ import io from 'socket.io-client'
 import { add_friend, send_message, updateMessage, messageClear } from '../../store/reducers/chatReducer'
 import toast from 'react-hot-toast'
 
-import { local_api, production_api, mode } from '../../utils/index'
+import {api_url} from '../../utils/index'
 
-let api = mode === 'local' ? local_api : production_api
-
-
-const socket = io(api)
+const socket = io(api_url)
 
 const Chat = () => {
 

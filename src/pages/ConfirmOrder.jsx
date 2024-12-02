@@ -5,14 +5,13 @@ import axios from 'axios'
 import { loadStripe } from '@stripe/stripe-js'
 import error from '../assets/error.png'
 import success from '../assets/success.png'
-import {production_api,mode,local_api} from '../utils/index'
+import { api_url } from '../utils/index'
 const load = async () => {
     return await loadStripe('pk_test_51Nk8Y4F0B89ncn3xWB6ZN3GsbVIVL7Jqfa3jxtIOpPkKHcleHZw4EMPJKd4cRwm34ZARBeYmAWwu3VxyYL1gb6OT00UKNSvfvb')
 }
 
 const ConfirmOrder = () => {
 
-    let api = mode === 'local' ? local_api : production_api
 
     const [loader, setLoader] = useState(true)
     const [stripe, setStripe] = useState('')
@@ -57,7 +56,7 @@ const ConfirmOrder = () => {
         const orderId = localStorage.getItem('orderId')
         if (orderId) {
             try {
-                await axios.get(`${api}/api/order/confirm/${orderId}`)
+                await axios.get(`${api_url}/api/order/confirm/${orderId}`)
                 localStorage.removeItem('orderId')
                 setLoader(false)
             } catch (error) {

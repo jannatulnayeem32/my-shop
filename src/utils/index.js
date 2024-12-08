@@ -4,7 +4,7 @@ let local = 'local'
 let mode = production;
 
 let local_api = "http://localhost:5000"
-let production_api = "https://backend-cxqu.onrender.com"
+let production_api = "https://backend-cxqu.onrender.com/api"
 
 let app_url = "", api_url = ""
 

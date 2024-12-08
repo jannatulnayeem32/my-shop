@@ -17,7 +17,7 @@ export const add_friend = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.post(`${api_url}/chat/customer/add-customer-friend`, info, config)
+            } = await axios.post(`${api_url}/api/chat/customer/add-customer-friend`, info, config)
             console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
@@ -38,7 +38,7 @@ export const send_message = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.post(`${api_url}/chat/customer/send-message-to-seller`, info, config)
+            } = await axios.post(`${api_url}/api/chat/customer/send-message-to-seller`, info, config)
             console.log(data)
             return fulfillWithValue(data)
         } catch (error) {

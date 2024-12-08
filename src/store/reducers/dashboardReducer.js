@@ -20,7 +20,7 @@ export const get_dashboard_index_data = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.get(`${api_url}/home/customer/gat-dashboard-data/${userId}`, config)
+            } = await axios.get(`${api_url}/api/home/customer/gat-dashboard-data/${userId}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error)

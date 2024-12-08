@@ -25,7 +25,7 @@ export const place_order = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.post(`${api_url}/home/order/palce-order`, {
+            } = await axios.post(`${api_url}/api/home/order/palce-order`, {
                 price,
                 products,
                 shipping_fee,
@@ -67,7 +67,7 @@ export const get_orders = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.get(`${api_url}/home/customer/gat-orders/${customerId}/${status}`, config)
+            } = await axios.get(`${api_url}/api/home/customer/gat-orders/${customerId}/${status}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error)
@@ -91,7 +91,7 @@ export const get_order = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.get(`${api_url}/home/customer/gat-order/${orderId}`, config)
+            } = await axios.get(`${api_url}/api/home/customer/gat-order/${orderId}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error)

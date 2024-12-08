@@ -20,7 +20,7 @@ export const add_to_card = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.post(`${api_url}/home/product/add-to-card`, info, config)
+            } = await axios.post(`${api_url}/api/home/product/add-to-card`, info, config)
             return fulfillWithValue(data)
         } catch (error) {
             console.log(error.response)
@@ -44,7 +44,7 @@ export const get_card_products = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.get(`${api_url}/home/product/get-card-product/${userId}`, config)
+            } = await axios.get(`${api_url}/api/home/product/get-card-product/${userId}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -67,7 +67,7 @@ export const delete_card_product = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.delete(`${api_url}/home/product/delete-card-product/${card_id}`, config)
+            } = await axios.delete(`${api_url}/api/home/product/delete-card-product/${card_id}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -91,7 +91,7 @@ export const quantity_inc = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.put(`${api_url}/home/product/quantity-inc/${card_id}`, config)
+            } = await axios.put(`${api_url}/api/home/product/quantity-inc/${card_id}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -114,7 +114,7 @@ export const quantity_dec = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.put(`${api_url}/home/product/quantity-dec/${card_id}`, config)
+            } = await axios.put(`${api_url}/api/home/product/quantity-dec/${card_id}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -137,7 +137,7 @@ export const add_to_wishlist = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.post(`${api_url}/home/product/add-to-wishlist`, info, config)
+            } = await axios.post(`${api_url}/api/home/product/add-to-wishlist`, info, config)
             console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
@@ -161,7 +161,7 @@ export const get_wishlist_products = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.get(`${api_url}/home/product/get-wishlist-products/${userId}`, config)
+            } = await axios.get(`${api_url}/api/home/product/get-wishlist-products/${userId}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -184,7 +184,7 @@ export const remove_wishlist = createAsyncThunk(
             }
             const {
                 data
-            } = await axios.delete(`${api_url}/home/product/delete-wishlist-product/${wishlistId}`, config)
+            } = await axios.delete(`${api_url}/api/home/product/delete-wishlist-product/${wishlistId}`, config)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
